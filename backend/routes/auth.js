@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -95,8 +96,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Get current user endpoint
-router.get('/me', (req, res) => {
-  // This route requires authentication middleware
+router.get('/me', authenticateToken, (req, res) => {
   res.json({
     user: req.user.toJSON()
   });

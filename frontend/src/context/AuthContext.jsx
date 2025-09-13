@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
-const API_BASE_URL = 'https://f5ee5936-f028-4d54-a9ad-fb9c9a69642c-00-3q5myi34ml4gr.spock.replit.dev:3000/api'
+const API_BASE_URL = '/api'
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
