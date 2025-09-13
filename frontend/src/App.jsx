@@ -10,9 +10,9 @@ import ProtectedRoute from './components/ProtectedRoute.jsx'
 function App() {
   return (
     <Router>
-      <div style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+      <div className="app-container">
         <Navigation />
-        <main style={{ padding: '20px' }}>
+        <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<AuthPage />} />

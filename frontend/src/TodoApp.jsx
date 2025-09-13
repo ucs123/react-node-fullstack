@@ -88,100 +88,76 @@ function TodoApp() {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h2>My Todos</h2>
+    <div className="todo-container">
+      <div className="todo-header">
+        <h2>My Todos</h2>
+      </div>
       
       {/* Add Todo Form */}
-      <form onSubmit={addTodo} style={{ marginBottom: '20px', padding: '15px', border: '1px solid #ddd', borderRadius: '5px' }}>
+      <form onSubmit={addTodo} className="todo-form">
         <h3>Add New Todo</h3>
-        <div style={{ marginBottom: '10px' }}>
+        <div className="form-group">
+          <label>Title</label>
           <input
             type="text"
             placeholder="Todo title"
             value={newTodo.title}
             onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
-            style={{ width: '100%', padding: '8px', fontSize: '14px' }}
             required
           />
         </div>
-        <div style={{ marginBottom: '10px' }}>
+        <div className="form-group">
+          <label>Description</label>
           <textarea
             placeholder="Description (optional)"
             value={newTodo.description}
             onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
-            style={{ width: '100%', padding: '8px', fontSize: '14px', minHeight: '60px' }}
           />
         </div>
         <button 
           type="submit" 
           disabled={loading}
-          style={{ 
-            backgroundColor: '#007bff', 
-            color: 'white', 
-            padding: '8px 16px', 
-            border: 'none', 
-            borderRadius: '4px', 
-            cursor: loading ? 'not-allowed' : 'pointer' 
-          }}
+          className="submit-btn"
         >
           {loading ? 'Adding...' : 'Add Todo'}
         </button>
       </form>
 
       {/* Todo List */}
-      <div>
+      <div className="todo-list">
         {todos.length === 0 ? (
-          <p style={{ textAlign: 'center', color: '#666' }}>No todos yet. Add one above!</p>
+          <p className="empty-state">No todos yet. Add one above!</p>
         ) : (
           todos.map(todo => (
-            <div key={todo.id} style={{ 
-              border: '1px solid #ddd', 
-              borderRadius: '5px', 
-              padding: '15px', 
-              marginBottom: '10px',
-              backgroundColor: todo.completed ? '#f8f9fa' : 'white'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+            <div key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+              <div className="todo-content">
                 <input
                   type="checkbox"
                   checked={todo.completed}
                   onChange={() => toggleTodo(todo.id, todo.completed)}
-                  style={{ marginTop: '2px' }}
+                  className="todo-checkbox"
                 />
-                <div style={{ flex: 1 }}>
-                  <h4 style={{ 
-                    margin: '0 0 5px 0', 
-                    textDecoration: todo.completed ? 'line-through' : 'none',
-                    color: todo.completed ? '#666' : 'black'
-                  }}>
+                <div className="todo-details">
+                  <h4 className="todo-title">
                     {todo.title}
                   </h4>
                   {todo.description && (
-                    <p style={{ 
-                      margin: '0 0 10px 0', 
-                      color: '#666',
-                      textDecoration: todo.completed ? 'line-through' : 'none'
-                    }}>
+                    <p className="todo-description">
                       {todo.description}
                     </p>
                   )}
-                  <small style={{ color: '#999' }}>
+                  <small className="todo-date">
                     Created: {new Date(todo.createdAt).toLocaleDateString()}
                   </small>
                 </div>
-                <button
-                  onClick={() => deleteTodo(todo.id)}
-                  style={{ 
-                    backgroundColor: '#dc3545', 
-                    color: 'white', 
-                    border: 'none', 
-                    borderRadius: '4px', 
-                    padding: '4px 8px', 
-                    cursor: 'pointer' 
-                  }}
-                >
-                  Delete
-                </button>
+                <div className="todo-actions">
+                  <button
+                    onClick={() => deleteTodo(todo.id)}
+                    className="delete-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))

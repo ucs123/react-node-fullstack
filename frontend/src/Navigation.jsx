@@ -8,61 +8,17 @@ function Navigation() {
 
   const isActive = (path) => location.pathname === path
 
-  const navStyle = {
-    backgroundColor: '#007bff',
-    padding: '1rem 0',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-  }
-
-  const containerStyle = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-
-  const logoStyle = {
-    color: 'white',
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    textDecoration: 'none'
-  }
-
-  const navLinksStyle = {
-    display: 'flex',
-    gap: '2rem',
-    listStyle: 'none',
-    margin: 0,
-    padding: 0
-  }
-
-  const linkStyle = {
-    color: 'white',
-    textDecoration: 'none',
-    padding: '0.5rem 1rem',
-    borderRadius: '4px',
-    transition: 'background-color 0.3s'
-  }
-
-  const activeLinkStyle = {
-    ...linkStyle,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    fontWeight: 'bold'
-  }
-
   return (
-    <nav style={navStyle}>
-      <div style={containerStyle}>
-        <Link to="/" style={logoStyle}>
+    <nav className="navigation">
+      <div className="nav-container">
+        <Link to="/" className="nav-logo">
           📋 TodoApp
         </Link>
-        <ul style={navLinksStyle}>
+        <ul className="nav-links">
           <li>
             <Link
               to="/"
-              style={isActive('/') ? activeLinkStyle : linkStyle}
+              className={`nav-link ${isActive('/') ? 'active' : ''}`}
             >
               Home
             </Link>
@@ -72,25 +28,20 @@ function Navigation() {
               <li>
                 <Link
                   to="/todos"
-                  style={isActive('/todos') ? activeLinkStyle : linkStyle}
+                  className={`nav-link ${isActive('/todos') ? 'active' : ''}`}
                 >
                   My Todos
                 </Link>
               </li>
               <li>
-                <span style={{ color: 'rgba(255,255,255,0.8)', padding: '0.5rem 1rem' }}>
+                <span className="user-info">
                   Welcome, {user.username}!
                 </span>
               </li>
               <li>
                 <button
                   onClick={logout}
-                  style={{
-                    ...linkStyle,
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}
+                  className="logout-btn"
                 >
                   Logout
                 </button>
@@ -100,7 +51,7 @@ function Navigation() {
             <li>
               <Link
                 to="/auth"
-                style={isActive('/auth') ? activeLinkStyle : linkStyle}
+                className={`nav-link ${isActive('/auth') ? 'active' : ''}`}
               >
                 Sign In
               </Link>
@@ -109,7 +60,7 @@ function Navigation() {
           <li>
             <Link
               to="/about"
-              style={isActive('/about') ? activeLinkStyle : linkStyle}
+              className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             >
               About
             </Link>

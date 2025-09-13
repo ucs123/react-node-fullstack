@@ -74,39 +74,14 @@ function AuthPage() {
   }
 
   return (
-    <div style={{ 
-      minHeight: '80vh', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      backgroundColor: '#f8f9fa'
-    }}>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '1fr 1fr', 
-        gap: '3rem', 
-        maxWidth: '1000px', 
-        width: '100%', 
-        padding: '2rem',
-        backgroundColor: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-      }}>
+    <div className="auth-page">
+      <div className="auth-container">
         {/* Form Section */}
-        <div style={{ padding: '2rem' }}>
-          <h2 style={{ 
-            fontSize: '2rem', 
-            marginBottom: '1rem', 
-            color: '#333',
-            textAlign: 'center'
-          }}>
+        <div className="auth-form-section">
+          <h2 className="auth-title">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
-          <p style={{ 
-            color: '#666', 
-            marginBottom: '2rem',
-            textAlign: 'center'
-          }}>
+          <p className="auth-subtitle">
             {isLogin ? 'Sign in to your account' : 'Join us to manage your todos'}
           </p>
 
@@ -123,15 +98,10 @@ function AuthPage() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="auth-form">
             {!isLogin && (
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontWeight: 'bold',
-                  color: '#333'
-                }}>
+              <div className="form-group">
+                <label>
                   Username
                 </label>
                 <input
@@ -139,25 +109,13 @@ function AuthPage() {
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
-                  style={{ 
-                    width: '100%', 
-                    padding: '0.75rem', 
-                    border: '2px solid #ddd', 
-                    borderRadius: '6px',
-                    fontSize: '1rem'
-                  }}
                   required={!isLogin}
                 />
               </div>
             )}
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '0.5rem', 
-                fontWeight: 'bold',
-                color: '#333'
-              }}>
+            <div className="form-group">
+              <label>
                 Email
               </label>
               <input
@@ -165,24 +123,12 @@ function AuthPage() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                style={{ 
-                  width: '100%', 
-                  padding: '0.75rem', 
-                  border: '2px solid #ddd', 
-                  borderRadius: '6px',
-                  fontSize: '1rem'
-                }}
                 required
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ 
-                display: 'block', 
-                marginBottom: '0.5rem', 
-                fontWeight: 'bold',
-                color: '#333'
-              }}>
+            <div className="form-group">
+              <label>
                 Password
               </label>
               <input
@@ -190,25 +136,13 @@ function AuthPage() {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                style={{ 
-                  width: '100%', 
-                  padding: '0.75rem', 
-                  border: '2px solid #ddd', 
-                  borderRadius: '6px',
-                  fontSize: '1rem'
-                }}
                 required
               />
             </div>
 
             {!isLogin && (
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontWeight: 'bold',
-                  color: '#333'
-                }}>
+              <div className="form-group">
+                <label>
                   Confirm Password
                 </label>
                 <input
@@ -216,13 +150,6 @@ function AuthPage() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  style={{ 
-                    width: '100%', 
-                    padding: '0.75rem', 
-                    border: '2px solid #ddd', 
-                    borderRadius: '6px',
-                    fontSize: '1rem'
-                  }}
                   required={!isLogin}
                 />
               </div>
@@ -231,42 +158,20 @@ function AuthPage() {
             <button
               type="submit"
               disabled={loading}
-              style={{ 
-                width: '100%', 
-                backgroundColor: '#007bff', 
-                color: 'white', 
-                padding: '0.75rem', 
-                border: 'none', 
-                borderRadius: '6px',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                opacity: loading ? 0.7 : 1
-              }}
+              className="submit-btn"
+              style={{ opacity: loading ? 0.7 : 1 }}
             >
               {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
             </button>
           </form>
 
-          <div style={{ 
-            textAlign: 'center', 
-            marginTop: '1.5rem',
-            paddingTop: '1.5rem',
-            borderTop: '1px solid #eee'
-          }}>
-            <span style={{ color: '#666' }}>
+          <div className="form-switch">
+            <span>
               {isLogin ? "Don't have an account? " : "Already have an account? "}
             </span>
             <button
               onClick={toggleMode}
-              style={{ 
-                background: 'none', 
-                border: 'none', 
-                color: '#007bff', 
-                textDecoration: 'underline',
-                cursor: 'pointer',
-                fontSize: '1rem'
-              }}
+              className="switch-link"
             >
               {isLogin ? 'Sign up' : 'Sign in'}
             </button>
@@ -274,45 +179,25 @@ function AuthPage() {
         </div>
 
         {/* Hero Section */}
-        <div style={{ 
-          padding: '2rem', 
-          backgroundColor: '#f8f9fa', 
-          borderRadius: '8px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center'
-        }}>
-          <h3 style={{ 
-            fontSize: '1.8rem', 
-            marginBottom: '1rem', 
-            color: '#333'
-          }}>
+        <div className="auth-info-section">
+          <h3 className="info-title">
             📋 Organize Your Life
           </h3>
-          <p style={{ 
-            color: '#666', 
-            fontSize: '1.1rem', 
-            lineHeight: '1.6',
-            marginBottom: '1.5rem'
-          }}>
+          <p className="info-description">
             Take control of your tasks and boost your productivity with our 
             intuitive todo management system.
           </p>
-          <ul style={{ 
-            listStyle: 'none', 
-            padding: 0, 
-            color: '#555' 
-          }}>
-            <li style={{ marginBottom: '0.8rem', display: 'flex', alignItems: 'center' }}>
-              <span style={{ marginRight: '0.5rem', fontSize: '1.2rem' }}>✅</span>
+          <ul className="features-list">
+            <li className="feature-item">
+              <span className="feature-icon">✅</span>
               Create and organize tasks easily
             </li>
-            <li style={{ marginBottom: '0.8rem', display: 'flex', alignItems: 'center' }}>
-              <span style={{ marginRight: '0.5rem', fontSize: '1.2rem' }}>🚀</span>
+            <li className="feature-item">
+              <span className="feature-icon">🚀</span>
               Track your progress in real-time
             </li>
-            <li style={{ marginBottom: '0.8rem', display: 'flex', alignItems: 'center' }}>
-              <span style={{ marginRight: '0.5rem', fontSize: '1.2rem' }}>🔒</span>
+            <li className="feature-item">
+              <span className="feature-icon">🔒</span>
               Secure and private to your account
             </li>
           </ul>
