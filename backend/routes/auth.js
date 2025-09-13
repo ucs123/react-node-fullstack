@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require('../config');
 const User = require('../models/User');
 const { authenticateToken } = require('../middleware/auth');
 
@@ -8,7 +9,14 @@ const router = express.Router();
 
 // Generate JWT token
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  return jwt.sign(
+    { userId }, 
+    config.jwt.secret, 
+    { 
+      expiresIn: config.jwt.expiresIn,
+      algorithm: config.jwt.algorithm
+    }
+  );
 };
 
 // Register endpoint
@@ -35,8 +43,7 @@ router.post('/register', async (req, res) => {
     }
 
     // Hash password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, config.bcrypt.saltRounds);
 
     // Create user
     const user = User.create({
