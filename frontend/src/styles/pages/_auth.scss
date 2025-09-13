@@ -57,6 +57,15 @@
         }
       }
 
+      .error-alert {
+        background-color: #fee;
+        color: #c33;
+        padding: $spacing-xs;
+        border-radius: 6px;
+        margin-bottom: $spacing-sm;
+        text-align: center;
+      }
+
       .submit-btn {
         @include button-primary;
         width: 100%;

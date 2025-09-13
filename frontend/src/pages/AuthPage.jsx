@@ -86,14 +86,7 @@ function AuthPage() {
           </p>
 
           {error && (
-            <div style={{ 
-              backgroundColor: '#fee', 
-              color: '#c33', 
-              padding: '0.75rem', 
-              borderRadius: '6px', 
-              marginBottom: '1rem',
-              textAlign: 'center'
-            }}>
+            <div className="error-alert">
               {error}
             </div>
           )}
