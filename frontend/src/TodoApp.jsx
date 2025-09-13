@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react'
 
+import { useAuth } from './context/AuthContext.jsx'
+
 const API_BASE_URL = 'https://f5ee5936-f028-4d54-a9ad-fb9c9a69642c-00-3q5myi34ml4gr.spock.replit.dev:3000/api'
 
 function TodoApp() {
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState({ title: '', description: '' })
   const [loading, setLoading] = useState(false)
+  const { token } = useAuth()
 
   // Fetch todos from API
   const fetchTodos = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/todos`)
+      const response = await fetch(`${API_BASE_URL}/todos`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       const data = await response.json()
       setTodos(data)
     } catch (error) {
@@ -33,7 +40,8 @@ function TodoApp() {
       const response = await fetch(`${API_BASE_URL}/todos`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newTodo)
       })
@@ -52,7 +60,8 @@ function TodoApp() {
       const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ completed: !completed })
       })
@@ -67,7 +76,10 @@ function TodoApp() {
   const deleteTodo = async (id) => {
     try {
       await fetch(`${API_BASE_URL}/todos/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
       setTodos(todos.filter(todo => todo.id !== id))
     } catch (error) {

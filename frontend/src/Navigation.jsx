@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from './context/AuthContext.jsx'
 
 function Navigation() {
   const location = useLocation()
+  const { user, logout } = useAuth()
 
   const isActive = (path) => location.pathname === path
 
@@ -65,14 +67,45 @@ function Navigation() {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              to="/todos"
-              style={isActive('/todos') ? activeLinkStyle : linkStyle}
-            >
-              My Todos
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Link
+                  to="/todos"
+                  style={isActive('/todos') ? activeLinkStyle : linkStyle}
+                >
+                  My Todos
+                </Link>
+              </li>
+              <li>
+                <span style={{ color: 'rgba(255,255,255,0.8)', padding: '0.5rem 1rem' }}>
+                  Welcome, {user.username}!
+                </span>
+              </li>
+              <li>
+                <button
+                  onClick={logout}
+                  style={{
+                    ...linkStyle,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link
+                to="/auth"
+                style={isActive('/auth') ? activeLinkStyle : linkStyle}
+              >
+                Sign In
+              </Link>
+            </li>
+          )}
           <li>
             <Link
               to="/about"
