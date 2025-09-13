@@ -1,6 +1,7 @@
-// Configuration file that uses environment variables
-// Sensitive values should be set as Replit Secrets, not in .env files
+// Load environment variables from .env file
+require('dotenv').config();
 
+// Configuration file that uses environment variables
 const config = {
   // Server Configuration
   port: process.env.PORT || 3000,
@@ -44,7 +45,7 @@ const requiredSecrets = ['JWT_SECRET'];
 requiredSecrets.forEach(secret => {
   if (!process.env[secret]) {
     console.error(`❌ Missing required environment variable: ${secret}`);
-    console.log('Please set this as a Replit Secret in your workspace');
+    console.log('Please set this in your .env file');
     process.exit(1);
   }
 });
