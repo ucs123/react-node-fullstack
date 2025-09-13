@@ -1,0 +1,129 @@
+@import '../variables';
+@import '../mixins';
+
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $bg-primary, $bg-light);
+  @include flex-center;
+  padding: $spacing-lg;
+
+  .auth-container {
+    background-color: $bg-white;
+    border-radius: $border-radius;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+  }
+
+  .auth-form-section {
+    padding: $spacing-lg;
+
+    .auth-title {
+      text-align: center;
+      margin-bottom: $spacing-xs;
+      color: $text-dark;
+      font-size: $font-size-xxl;
+      font-weight: bold;
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: $text-light;
+      margin-bottom: $spacing-lg;
+    }
+
+    .auth-form {
+      .form-group {
+        margin-bottom: $spacing-sm;
+
+        label {
+          display: block;
+          margin-bottom: $spacing-xs;
+          color: $text-dark;
+          font-weight: 500;
+        }
+
+        input {
+          @include input-base;
+        }
+      }
+
+      .submit-btn {
+        @include button-primary;
+        width: 100%;
+        padding: $spacing-sm;
+        font-size: $font-size-lg;
+        font-weight: 500;
+        margin-bottom: $spacing-md;
+      }
+
+      .form-switch {
+        text-align: center;
+        color: $text-light;
+
+        .switch-link {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 500;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .auth-info-section {
+    background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+    color: $text-white;
+    padding: $spacing-lg;
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    .info-title {
+      font-size: $font-size-xxl;
+      margin-bottom: $spacing-sm;
+      font-weight: bold;
+    }
+
+    .info-description {
+      margin-bottom: $spacing-lg;
+      opacity: 0.9;
+      line-height: $line-height-base;
+    }
+
+    .features-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+
+      .feature-item {
+        margin-bottom: $spacing-xs;
+        display: flex;
+        align-items: center;
+
+        .feature-icon {
+          margin-right: $spacing-xs;
+          font-size: $font-size-lg;
+        }
+      }
+    }
+  }
+}

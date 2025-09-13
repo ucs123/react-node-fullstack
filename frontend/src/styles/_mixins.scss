@@ -1,0 +1,82 @@
+// Common mixins
+@mixin container($max-width: $max-width-md) {
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin card {
+  background-color: $bg-white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+}
+
+@mixin button-base {
+  padding: $spacing-xs $spacing-sm;
+  border: none;
+  border-radius: $border-radius-small;
+  cursor: pointer;
+  font-size: $font-size-base;
+  transition: all $transition-fast ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-color;
+  color: $text-white;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: $secondary-color;
+  color: $text-white;
+  
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background-color: $danger-color;
+  color: $text-white;
+  
+  &:hover {
+    background-color: darken($danger-color, 10%);
+  }
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: $spacing-xs;
+  font-size: $font-size-sm;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-small;
+  transition: border-color $transition-fast ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+  }
+}

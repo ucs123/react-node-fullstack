@@ -1,0 +1,71 @@
+@import 'variables';
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  line-height: $line-height-base;
+  color: $text-dark;
+  background-color: $bg-primary;
+}
+
+// Global utility classes
+.container {
+  max-width: $max-width-md;
+  margin: 0 auto;
+  padding: 0 $spacing-sm;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+
+.p-sm { padding: $spacing-sm; }
+.p-md { padding: $spacing-md; }
+.p-lg { padding: $spacing-lg; }
+
+// App layout
+.app-container {
+  min-height: 100vh;
+  background-color: $bg-primary;
+}
+
+.main-content {
+  padding: $spacing-lg;
+}
+
+// Loading states
+.loading-container {
+  @include flex-center;
+  flex-direction: column;
+  padding: $spacing-xl;
+
+  .loading-text {
+    font-size: $font-size-lg;
+    color: $text-light;
+    margin-top: $spacing-sm;
+  }
+}

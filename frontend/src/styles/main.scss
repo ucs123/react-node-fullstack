@@ -1,0 +1,15 @@
+// Import variables and mixins first
+@import 'variables';
+@import 'mixins';
+
+// Import global styles
+@import 'globals';
+
+// Import component styles
+@import 'components/navigation';
+@import 'components/todo';
+
+// Import page styles
+@import 'pages/home';
+@import 'pages/auth';
+@import 'pages/about';

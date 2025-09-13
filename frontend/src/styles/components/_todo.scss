@@ -1,0 +1,124 @@
+@import '../variables';
+@import '../mixins';
+
+.todo-container {
+  @include container($max-width-sm);
+  padding: $spacing-lg;
+
+  .todo-header {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+
+    h2 {
+      color: $text-dark;
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  .todo-form {
+    @include card;
+    margin-bottom: $spacing-lg;
+    border: 1px solid $border-color;
+
+    .form-group {
+      margin-bottom: $spacing-sm;
+
+      label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-weight: 500;
+        color: $text-dark;
+      }
+
+      input, textarea {
+        @include input-base;
+      }
+
+      textarea {
+        min-height: 60px;
+        resize: vertical;
+      }
+    }
+
+    .submit-btn {
+      @include button-primary;
+      width: 100%;
+    }
+  }
+
+  .todo-list {
+    .empty-state {
+      text-align: center;
+      color: $text-light;
+      font-style: italic;
+      padding: $spacing-xl;
+    }
+
+    .todo-item {
+      @include card;
+      margin-bottom: $spacing-sm;
+      border: 1px solid $border-color;
+      transition: transform $transition-fast ease, box-shadow $transition-fast ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+      }
+
+      &.completed {
+        opacity: 0.7;
+        background-color: $bg-light;
+
+        .todo-title {
+          text-decoration: line-through;
+          color: $text-lighter;
+        }
+      }
+
+      .todo-content {
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-sm;
+
+        .todo-checkbox {
+          margin-top: 2px;
+          cursor: pointer;
+        }
+
+        .todo-details {
+          flex: 1;
+
+          .todo-title {
+            margin: 0 0 $spacing-xs 0;
+            color: $text-dark;
+            font-size: $font-size-lg;
+            font-weight: 500;
+          }
+
+          .todo-description {
+            color: $text-medium;
+            margin: 0 0 $spacing-xs 0;
+            line-height: $line-height-base;
+          }
+
+          .todo-date {
+            color: $text-lighter;
+            font-size: $font-size-sm;
+          }
+        }
+
+        .todo-actions {
+          display: flex;
+          gap: $spacing-xs;
+          margin-top: $spacing-xs;
+
+          .delete-btn {
+            @include button-danger;
+            font-size: $font-size-sm;
+            padding: $spacing-xs;
+          }
+        }
+      }
+    }
+  }
+}
