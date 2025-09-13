@@ -15,6 +15,7 @@ ignorePorts = false
 
 [agent]
 expertMode = true
+integrations = ["javascript_mem_db:1.0.0"]
 
 [workflows]
 runButton = "Project"
@@ -28,6 +29,10 @@ author = "agent"
 task = "workflow.run"
 args = "React App"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Todo API"
+
 [[workflows.workflow]]
 name = "React App"
 author = "agent"
@@ -40,10 +45,26 @@ waitForPort = 5000
 [workflows.workflow.metadata]
 outputType = "webview"
 
+[[workflows.workflow]]
+name = "Todo API"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run api"
+waitForPort = 3000
+
+[workflows.workflow.metadata]
+outputType = "console"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
 localPort = 33281
+externalPort = 3000
+
+[[ports]]
+localPort = 3000
 externalPort = 3000
