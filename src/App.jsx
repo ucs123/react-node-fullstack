@@ -1,10 +1,11 @@
-import {React} from 'react'
+import React, { useState, useEffect } from 'react'
+import TodoApp from './TodoApp.jsx'
 
 function App() {
   return (
     <div>
-      <h1>Hello React!</h1>
-      <p>Your React app is now running.</p>
+      <h1>Todo Application</h1>
+      <TodoApp />
     </div>
   )
 }
