@@ -6,7 +6,7 @@ function Home() {
     <div className="home-page">
       <div className="hero-section">
         <h1 className="hero-title">
-          Welcome to TodoApp
+          Welcome to React Node Learning App
         </h1>
         <p className="hero-subtitle">
           Organize your tasks efficiently with our simple and powerful todo application.
