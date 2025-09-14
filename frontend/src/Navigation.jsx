@@ -12,7 +12,7 @@ function Navigation() {
     <nav className="navigation">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          📋 TodoApp
+          📋 REACT/NODE LEARNING APP
         </Link>
         <ul className="nav-links">
           <li>
@@ -63,6 +63,14 @@ function Navigation() {
               className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             >
               About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+            >
+              Q&A
             </Link>
           </li>
         </ul>
