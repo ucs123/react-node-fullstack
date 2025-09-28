@@ -25,9 +25,25 @@ function TodoApp() {
     }
   }
 
+  // Fetch todos from API
+  const fetchQA = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/questions`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      const data = await response.json()
+      setTodos(data)
+    } catch (error) {
+      console.error('Error fetching questions:', error)
+    }
+  }
+
   // Load todos when component mounts
   useEffect(() => {
-    fetchTodos()
+    fetchTodos();
+    fetchQA();
   }, [])
 
   // Add new todo
