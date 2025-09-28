@@ -1,5 +1,5 @@
 // Common mixins
-@mixin container($max-width: $max-width-md) {
+@mixin container($max-width: $max-width-lg) {
   max-width: $max-width;
   margin: 0 auto;
 }
