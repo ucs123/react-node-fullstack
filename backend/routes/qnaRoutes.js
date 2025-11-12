@@ -10,6 +10,8 @@ router.use(authenticateToken);
 router.post("/questions", (req, res) => QnaController.createQuestion(req, res));
 router.get("/questions", (req, res) => QnaController.getAllQuestions(req, res));
 router.get("/questions/:id", (req, res) => QnaController.getQuestionById(req, res));
+router.put("/questions/:id", (req, res) => QnaController.editQuestion(req, res));
+router.delete("/questions/:id", (req, res) => QnaController.deleteQuestion(req, res));
 
 /* -------------------- ANSWERS -------------------- */
 router.post("/answers", (req, res) => QnaController.createAnswer(req, res));

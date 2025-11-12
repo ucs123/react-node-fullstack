@@ -34,6 +34,31 @@ class QnaService {
       replies: db.questions.filter(r => r.parentId === id)
     };
   }
+  /** ✏️ Edit question text */
+  editQuestion(id, newText) {
+    const question = db.questions.find(q => q.id === id);
+    if (!question) return null;
+
+    question.text = newText;
+    question.updatedAt = new Date().toISOString();
+    return question;
+  }
+
+  deleteQuestion(id) {
+    const index = db.questions.findIndex(q => q.id === id);
+    if (index === -1) return null;
+  
+    // Optional: remove related answers & comments too
+    db.answers = db.answers.filter(a => a.questionId !== id);
+    db.comments = db.comments.filter(c => {
+      const answer = db.answers.find(a => a.id === c.answerId);
+      return answer !== undefined;
+    });
+  
+    const deleted = db.questions.splice(index, 1)[0];
+    return deleted;
+  }
+
 
   /* -------------------- ANSWERS -------------------- */
   createAnswer({ questionId, text, author }) {
