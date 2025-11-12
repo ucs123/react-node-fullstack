@@ -20,6 +20,26 @@ class QnaController {
     res.json(q);
   }
 
+  /** ✏️ Edit question */
+  editQuestion(req, res) {
+    const { id } = req.params;
+    const { text } = req.body;
+
+    if (!text) return res.status(400).json({ error: "New question text required" });
+
+    const updatedQ = QnaService.editQuestion(parseInt(id), text);
+    if (!updatedQ) return res.status(404).json({ error: "Question not found" });
+
+    res.json(updatedQ);
+  }
+
+  deleteQuestion(req, res) {
+    const { id } = req.params;
+    const deleted = QnaService.deleteQuestion(parseInt(id));
+    if (!deleted) return res.status(404).json({ error: "Question not found" });
+    res.json({ message: "Question deleted successfully" });
+  }
+
   /* -------------------- ANSWERS -------------------- */
   createAnswer(req, res) {
     const { questionId, text, author } = req.body;

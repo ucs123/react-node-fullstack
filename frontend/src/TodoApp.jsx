@@ -40,6 +40,60 @@ function TodoApp() {
     }
   }
 
+  // Edit a question
+  const editQuestion = async (id, updatedText) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/questions/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ text: updatedText })
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || 'Failed to edit question');
+      }
+
+      const updatedQuestion = await response.json();
+      console.log('Question updated successfully:', updatedQuestion);
+
+      // Refresh questions list
+      await fetchQA();
+
+    } catch (error) {
+      console.error('Error editing question:', error);
+    }
+  };
+
+  const handleEdit = () => {
+    editQuestion(1, "Updated question text here");
+  };
+
+  const deleteQuestion = async (id) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/questions/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || 'Failed to delete question');
+      }
+  
+      console.log(`Question ${id} deleted successfully`);
+      await fetchQA(); // refresh list
+  
+    } catch (error) {
+      console.error('Error deleting question:', error);
+    }
+  };
+
   // Load todos when component mounts
   useEffect(() => {
     fetchTodos();
@@ -108,7 +162,10 @@ function TodoApp() {
       <div className="todo-header">
         <h2>My Todos</h2>
       </div>
-      
+
+      <button onClick={handleEdit}>Edit Question 1</button>
+      <button onClick={() => deleteQuestion(2)}>Delete Question 2</button>
+
       {/* Add Todo Form */}
       <form onSubmit={addTodo} className="todo-form">
         <h3>Add New Todo</h3>
@@ -130,8 +187,8 @@ function TodoApp() {
             onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
           />
         </div>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={loading}
           className="submit-btn"
         >
